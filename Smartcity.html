@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Dashboard - India 🌆</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Project Details Page Styles */
+        .project-details {
+            display: flex;
+            min-height: 100vh;
+            padding: 80px 2rem 2rem;
+            background: white;
+        }
+
+        .sidebar {
+            width: 45%;
+            padding: 1rem;
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow: hidden;
+        }
+
+        .image-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .image-slider img {
+            width: 100%;
+            min-width: 250px;
+            margin-right: 1rem;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .image-slider img:first-child {
+            display: block;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .prev-arrow {
+            left: 10px;
+        }
+
+        .next-arrow {
+            right: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-left: 2rem;
+        }
+
+        .project-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-section {
+            margin-bottom: 2rem;
+        }
+
+        .project-section h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .project-section ul {
+            list-style-type: disc;
+            padding-left: 2rem;
+        }
+
+        .project-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .github-link:hover {
+            background: #555;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .project-details {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+            }
+
+            .main-content {
+                padding-left: 0;
+                margin-top: 2rem;
+            }
+
+            .image-slider {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            .image-slider img {
+                min-width: 200px;
+                margin-right: 1rem;
+            }
+
+            .slider-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="home.html" class="logo">VR</a>
+            <ul class="nav-links">
+                <li><a href="home.html#home">Home</a></li>
+                <li><a href="home.html#skills">Skills</a></li>
+                <li><a href="home.html#experience">Experience</a></li>
+                <li><a href="home.html#education">Education</a></li>
+                <li><a href="home.html#projects">Projects</a></li>
+                <li><a href="home.html#hackathons">Hackathons</a></li>
+                <li><a href="home.html#courses">Courses</a></li>
+                <li><a href="home.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Details -->
+    <div class="project-details">
+        <div class="sidebar">
+            <div class="image-slider" id="imageSlider">
+            </div>
+            <button class="slider-arrow prev-arrow" onclick="slide(-1)">&#10094;</button>
+            <button class="slider-arrow next-arrow" onclick="slide(1)">&#10095;</button>
+        </div>
+        <div class="main-content">
+            <div class="project-header">
+                <h1>Smart City Dashboard - India 🌆</h1>
+            </div>
+            <div class="project-section">
+                <h3>Project Overview</h3>
+                <p>A web app for real-time monitoring of urban parameters across Indian cities, including air quality, traffic, water levels, and energy usage.</p>
+            </div>
+            <div class="project-section">
+                <h3>Core Features</h3>
+                <ul>
+                    <li><strong>Real-time Monitoring</strong>: Tracks urban parameters live.</li>
+                    <li><strong>User Authentication</strong>: Admin/user roles with secure login.</li>
+                    <li><strong>Interactive Visuals</strong>: Dynamic data charts.</li>
+                    <li><strong>Map Integration</strong>: OpenStreetMap for location mapping.</li>
+                    <li><strong>Search & Alerts</strong>: Location-based filtering and critical condition alerts.</li>
+                    <li><strong>Admin Panel</strong>: User management and alert creation.</li>
+                    <li><strong>Responsive Design</strong>: Works on all devices.</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Tech Stack</h3>
+                <p><strong>Frontend</strong>: React.js, TypeScript, Chakra UI, Redux Toolkit, Socket.io-client, Leaflet Maps, Chart.js</p>
+                <p><strong>Backend</strong>: Node.js, Express.js, MongoDB, JWT, Socket.io, various APIs</p>
+            </div>
+            <div class="project-section">
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Node.js (v14 or higher)</li>
+                    <li>MongoDB (local or MongoDB Atlas)</li>
+                    <li>npm or yarn</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li>Setup MongoDB and update .env with MongoDB URI.</li>
+                    <li><strong>Backend</strong>: cd backend, npm install, npm run setup, npm run dev.</li>
+                    <li><strong>Frontend</strong>: cd frontend, npm install, npm start.</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Default Logins</h3>
+                <ul>
+                    <li><strong>Admin User</strong>: Email: admin@smartcity.com, Password: admin123</li>
+                    <li><strong>Demo User</strong>: Email: user1@smartcity.com, Password: user123</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Environment Variables</h3>
+                <p><strong>Backend (.env)</strong>: PORT=5000, MONGODB_URI=mongodb://localhost:27017/, JWT_SECRET=your_secret_key_here, FRONTEND_URL=http://localhost:3000</p>
+                <p><strong>Frontend (.env)</strong>: REACT_APP_API_URL=http://localhost:5000</p>
+            </div>
+            <div class="project-section">
+                <h3>Features Overview</h3>
+                <ul>
+                    <li><strong>Regular Users</strong>: Dashboard, alerts, map view, settings.</li>
+                    <li><strong>Admin Users</strong>: Admin dashboard, create alerts, manage users, monitor system.</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Project Structure</h3>
+                <p>smart-city-dashboard/ with backend/ (middleware, models, routes, scripts, server.ts) and frontend/ (components, contexts, utils, App.tsx).</p>
+            </div>
+            <div class="project-section">
+                <p>This dashboard offers a powerful tool for urban monitoring with real-time insights and management capabilities.</p>
+                <a href="https://github.com/23f1000356/Smart-City-Dashboard" class="github-link" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/vishakha-roy-52924b1b6/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/23f1000356" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:122vishakha2092@sjcem.edu.in">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="tel:+919354565648">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Vishakha Roy. Crafted with 💜 and lots of ☕</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                navbar.querySelectorAll('a').forEach(link => {
+                    if (!link.classList.contains('logo')) {
+                        link.style.color = '#333';
+                    }
+                });
+                navbar.querySelector('.logo').style.color = '#667eea';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.boxShadow = 'none';
+                navbar.querySelectorAll('a').forEach(link => {
+                    link.style.color = 'white';
+                });
+            }
+        });
+
+        // Image Slider Functionality
+        let slideIndex = 0;
+        const slides = document.getElementById('imageSlider').getElementsByTagName('img');
+        const totalSlides = slides.length;
+
+        function showSlides() {
+            for (let i = 0; i < totalSlides; i++) {
+                slides[i].style.display = 'none';
+            }
+            if (totalSlides > 0) {
+                slideIndex = (slideIndex + totalSlides) % totalSlides;
+                slides[slideIndex].style.display = 'block';
+            }
+        }
+
+        function slide(direction) {
+            slideIndex += direction;
+            showSlides();
+        }
+
+        // Auto-slide every 3 seconds
+        setInterval(() => slide(1), 3000);
+
+        // Initial call
+        showSlides();
+    </script>
