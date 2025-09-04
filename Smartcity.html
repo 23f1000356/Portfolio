@@ -1,35 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart City Dashboard - India 🌆</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Hamburger menu styles */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            justify-content: center;
-            align-items: center;
-            z-index: 1100;
-        }
-        .bar {
-            height: 4px;
-            width: 100%;
-            background: white;
-            margin: 4px 0;
-            border-radius: 2px;
-            transition: 0.4s;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart City Dashboard - India 🌆</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -113,43 +94,41 @@
       background: white;
     }
 
-        .sidebar {
-            width: 45%;
-            padding: 1rem;
-            position: sticky;
-            top: 80px;
-            height: calc(100vh - 80px);
-            overflow: hidden;
-        }
+    .sidebar {
+      width: 45%;
+      padding: 1rem;
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 80px);
+      overflow: hidden;
+    }
 
-        .image-slider {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
+    .image-slider {
+      display: flex;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+    }
 
-        .image-slider img {
-            width: 100%;
-            min-width: 250px;
-            margin-right: 1rem;
-            border-radius: 10px;
-            display: none;
-        }
+    .image-slider img {
+      width: 100%;
+      flex-shrink: 0;
+      border-radius: 10px;
+    }
 
-        .image-slider img:first-child {
-            display: block;
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
 
     .slider-arrow:hover {
       background: rgba(0, 0, 0, 0.8);
@@ -163,41 +142,42 @@
       padding-left: 2rem;
     }
 
-        .project-header {
-            margin-bottom: 2rem;
-        }
+    .project-header {
+      margin-bottom: 2rem;
+    }
 
     .project-section {
       margin-bottom: 2rem;
     }
 
-        .project-section h3 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
+    .project-section h3 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
 
     .project-section ul {
       list-style-type: disc;
       padding-left: 1.5rem;
     }
 
-        .project-section li {
-            margin-bottom: 0.5rem;
-        }
+    .project-section li {
+      margin-bottom: 0.5rem;
+    }
 
-        .github-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+    .github-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      background: #333;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
 
-        .github-link:hover {
-            background: #555;
-        }
+    .github-link:hover {
+      background: #555;
+    }
 
     /* Footer */
     .footer {
@@ -225,78 +205,57 @@
       color: #667eea;
     }
 
-        @media (max-width: 768px) {
-            .project-details {
-                flex-direction: column;
-                padding: 80px 0.5rem 2rem;
-            }
-            .sidebar {
-                width: 100%;
-                position: static;
-                height: auto;
-                padding: 0.5rem;
-            }
-            .main-content {
-                padding-left: 0;
-                margin-top: 2rem;
-            }
-            .image-slider {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-            .image-slider img {
-                min-width: 150px;
-                margin-right: 0.5rem;
-            }
-            .slider-arrow {
-                display: none;
-            }
-            .container {
-                padding: 0 0.5rem;
-            }
-            .footer {
-                padding: 1rem 0;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .github-link {
-                font-size: 1rem;
-                padding: 0.5rem 0.7rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-            h3 {
-                font-size: 1.1rem;
-            }
-            ul {
-                padding-left: 1rem;
-            }
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                background: rgba(102,126,234,0.98);
-                flex-direction: column;
-                width: 70vw;
-                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-                padding: 2rem 1rem;
-                border-radius: 0 0 0 20px;
-                z-index: 1001;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .nav-container {
-                position: relative;
-            }
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .project-details {
+        flex-direction: column;
+        padding: 80px 1rem 2rem;
+      }
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+        margin-bottom: 2rem;
+      }
+      .main-content {
+        padding-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        flex-direction: column;
+        width: 75vw;
+        background: rgba(102,126,234,0.98);
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        padding: 1.5rem;
+        border-radius: 0 0 0 20px;
+        z-index: 1001;
+      }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+      h1 { font-size: 1.4rem; }
+      h3 { font-size: 1.1rem; }
+      p, li { font-size: 0.95rem; }
+      .github-link { width: 100%; text-align: center; }
+      .slider-arrow { display: none; }
+      .image-slider { overflow-x: auto; scroll-snap-type: x mandatory; }
+      .image-slider img { flex: 0 0 80%; scroll-snap-align: center; margin-right: 0.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .logo { font-size: 1.4rem; }
+      h1 { font-size: 1.2rem; }
+      h3 { font-size: 1rem; }
+      p, li { font-size: 0.9rem; }
+      .nav-links { width: 85vw; }
+      .social-links a { font-size: 1.2rem; }
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
