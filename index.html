@@ -6,6 +6,25 @@
     <title>Vishakha Roy - Full Stack Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+        }
+        .bar {
+            height: 4px;
+            width: 100%;
+            background: white;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.4s;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -643,10 +662,29 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(102,126,234,0.98);
+                flex-direction: column;
+                width: 70vw;
+                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                padding: 2rem 1rem;
+                border-radius: 0 0 0 20px;
+                z-index: 1001;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-container {
+                position: relative;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .hero-buttons {
@@ -669,35 +707,62 @@
             }
 
             .hero-right img {
-                max-width: 300px;
+                max-width: 220px;
+                width: 100%;
+                height: auto;
             }
 
             .timeline::after {
-                left: 31px;
+                left: 20px;
             }
 
             .timeline-item {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+                padding-left: 40px;
+                padding-right: 10px;
             }
 
             .timeline-item::after {
-                left: 15px;
+                left: 5px;
             }
 
             .contact-container {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
             }
 
             .skills-tabs {
                 justify-content: center;
+                flex-direction: column;
+                gap: 0.5rem;
             }
 
             .skill-tab {
                 font-size: 0.9rem;
                 padding: 10px 20px;
+                width: 100%;
+            }
+            .projects-grid, .education-grid, .hackathons-grid, .courses-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            .project-card, .education-card, .hackathon-card, .course-card {
+                min-width: 0;
+                width: 100%;
+                margin: 0 auto;
+            }
+            .container {
+                padding: 0 0.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .btn, .btn-primary, .btn-secondary {
+                font-size: 1rem;
+                padding: 10px 18px;
+            }
+            .footer {
+                padding: 1rem 0;
             }
         }
 
@@ -791,7 +856,12 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">VR</a>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -1436,20 +1506,31 @@
             skillContents.forEach(content => {
                 content.classList.remove('active');
             });
-            
             const skillTabs = document.querySelectorAll('.skill-tab');
             skillTabs.forEach(tab => {
                 tab.classList.remove('active');
             });
-            
             document.getElementById(category + '-skills').classList.add('active');
-            
             event.target.classList.add('active');
-            
             setTimeout(() => {
                 animateSkillBars();
             }, 300);
         }
+
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            // Close menu on link click (mobile)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
 
         // Animate skill bars
         function animateSkillBars() {
@@ -1458,7 +1539,6 @@
                 const width = bar.getAttribute('data-width');
                 bar.style.setProperty('--progress', width + '%');
                 bar.classList.add('animate');
-                
                 setTimeout(() => {
                     bar.classList.remove('animate');
                     bar.style.width = width + '%';
@@ -1466,10 +1546,9 @@
             });
         }
 
-        // Initialize skill bars on page load
+        // Initialize skill bars and other features on page load
         document.addEventListener('DOMContentLoaded', function() {
             animateSkillBars();
-            
             // Navbar scroll effect
             const navbar = document.querySelector('.navbar');
             window.addEventListener('scroll', function() {
@@ -1490,7 +1569,6 @@
                     });
                 }
             });
-            
             // Form submission
             const contactForm = document.querySelector('.contact-form');
             contactForm.addEventListener('submit', function(e) {
@@ -1498,7 +1576,6 @@
                 alert('Thank you for your message! I\'ll get back to you soon.');
                 this.reset();
             });
-            
             // Smooth scroll for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -1524,7 +1601,6 @@
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1533,7 +1609,6 @@
                 }
             });
         }, observerOptions);
-
         // Observe all sections for scroll animations
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('section');

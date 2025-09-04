@@ -6,6 +6,25 @@
     <title>Smart Parking Management System - Project Details</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+        }
+        .bar {
+            height: 4px;
+            width: 100%;
+            background: white;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.4s;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -187,31 +206,72 @@
         @media (max-width: 768px) {
             .project-details {
                 flex-direction: column;
+                padding: 80px 0.5rem 2rem;
             }
-
             .sidebar {
                 width: 100%;
                 position: static;
                 height: auto;
+                padding: 0.5rem;
             }
-
             .main-content {
                 padding-left: 0;
                 margin-top: 2rem;
             }
-
             .image-slider {
                 flex-wrap: nowrap;
                 overflow-x: auto;
             }
-
             .image-slider img {
-                min-width: 200px;
-                margin-right: 1rem;
+                min-width: 150px;
+                margin-right: 0.5rem;
             }
-
             .slider-arrow {
                 display: none;
+            }
+            .container {
+                padding: 0 0.5rem;
+            }
+            .footer {
+                padding: 1rem 0;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .github-link {
+                font-size: 1rem;
+                padding: 0.5rem 0.7rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            ul {
+                padding-left: 1rem;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(102,126,234,0.98);
+                flex-direction: column;
+                width: 70vw;
+                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                padding: 2rem 1rem;
+                border-radius: 0 0 0 20px;
+                z-index: 1001;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-container {
+                position: relative;
             }
         }
     </style>
@@ -221,7 +281,12 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="home.html" class="logo">VR</a>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="home.html#home">Home</a></li>
                 <li><a href="home.html#skills">Skills</a></li>
                 <li><a href="home.html#experience">Experience</a></li>
@@ -306,6 +371,21 @@
     </footer>
 
     <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            // Close menu on link click (mobile)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+
         // Navbar scroll effect
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', function() {
