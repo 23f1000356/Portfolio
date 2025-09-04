@@ -17,6 +17,7 @@
             align-items: center;
             z-index: 1100;
         }
+
         .bar {
             height: 4px;
             width: 100%;
@@ -25,6 +26,7 @@
             border-radius: 2px;
             transition: 0.4s;
         }
+
         * {
             margin: 0;
             padding: 0;
@@ -97,16 +99,20 @@
             top: 80px;
             height: calc(100vh - 80px);
             overflow: hidden;
+            position: relative;
         }
 
         .image-slider {
             display: flex;
             transition: transform 0.5s ease;
+            position: relative;
+            height: 300px;
         }
 
         .image-slider img {
             width: 100%;
-            min-width: 250px;
+            height: 300px;
+            object-fit: cover;
             margin-right: 1rem;
             border-radius: 10px;
             display: none;
@@ -126,6 +132,17 @@
             padding: 1rem;
             cursor: pointer;
             font-size: 1.5rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .prev-arrow {
@@ -145,6 +162,12 @@
             margin-bottom: 2rem;
         }
 
+        .project-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
         .project-section {
             margin-bottom: 2rem;
         }
@@ -152,6 +175,9 @@
         .project-section h3 {
             color: #333;
             margin-bottom: 1rem;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
         }
 
         .project-section ul {
@@ -161,20 +187,24 @@
 
         .project-section li {
             margin-bottom: 0.5rem;
+            line-height: 1.6;
         }
 
         .github-link {
             display: inline-block;
             margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #333;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
         .github-link:hover {
-            background: #555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         /* Footer */
@@ -204,48 +234,362 @@
         }
 
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(102, 126, 234, 0.98);
+                flex-direction: column;
+                width: 100vw;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+                padding: 2rem 1rem;
+                gap: 1rem;
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
             .project-details {
                 flex-direction: column;
-                padding: 80px 0.5rem 2rem;
+                padding: 80px 1rem 2rem;
             }
+
             .sidebar {
                 width: 100%;
                 position: static;
                 height: auto;
-                padding: 0.5rem;
+                margin-bottom: 2rem;
             }
+
+            .image-slider {
+                height: 250px;
+            }
+
+            .image-slider img {
+                height: 250px;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                padding: 0.5rem;
+                font-size: 1.2rem;
+            }
+
+            .prev-arrow {
+                left: 5px;
+            }
+
+            .next-arrow {
+                right: 5px;
+            }
+
             .main-content {
                 padding-left: 0;
-                margin-top: 2rem;
             }
-            .image-slider {
-                flex-wrap: nowrap;
-                overflow-x: auto;
+
+            .project-header h1 {
+                font-size: 1.8rem;
+                line-height: 1.3;
             }
-            .image-slider img {
-                min-width: 150px;
-                margin-right: 0.5rem;
+
+            .project-section h3 {
+                font-size: 1.1rem;
             }
-            .slider-arrow {
-                display: none;
+
+            .project-section p,
+            .project-section li {
+                font-size: 0.95rem;
+                line-height: 1.5;
             }
-            .container {
+
+            .project-section ul {
+                padding-left: 1.5rem;
+            }
+
+            .github-link {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+                display: block;
+                text-align: center;
+                margin: 1.5rem 0;
+            }
+
+            .footer {
+                padding: 1.5rem 1rem;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+            }
+
+            .social-links a {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
                 padding: 0 0.5rem;
             }
-            .footer {
-                padding: 1rem 0;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .github-link {
-                font-size: 1rem;
-                padding: 0.5rem 0.7rem;
-            }
-            h1 {
+
+            .logo {
                 font-size: 1.5rem;
             }
-            h3 {
+
+            .project-details {
+                padding: 80px 0.5rem 1rem;
+            }
+
+            .project-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .project-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .project-section h3 {
+                font-size: 1rem;
+            }
+
+            .project-section p,
+            .project-section li {
+                font-size: 0.9rem;
+            }
+
+            .image-slider {
+                height: 200px;
+            }
+
+            .image-slider img {
+                height: 200px;
+            }
+
+            .slider-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="home.html" class="logo">VR</a>
+            <div class="hamburger" id="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="home.html#home">Home</a></li>
+                <li><a href="home.html#skills">Skills</a></li>
+                <li><a href="home.html#experience">Experience</a></li>
+                <li><a href="home.html#education">Education</a></li>
+                <li><a href="home.html#projects">Projects</a></li>
+                <li><a href="home.html#hackathons">Hackathons</a></li>
+                <li><a href="home.html#courses">Courses</a></li>
+                <li><a href="home.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Details -->
+    <div class="project-details">
+        <div class="sidebar">
+            <div class="image-slider" id="imageSlider">
+            </div>
+            <button class="slider-arrow prev-arrow" onclick="slide(-1)">&#10094;</button>
+            <button class="slider-arrow next-arrow" onclick="slide(1)">&#10095;</button>
+        </div>
+        <div class="main-content">
+            <div class="project-header">
+                <h1>Smart City Dashboard - India 🌆</h1>
+            </div>
+            <div class="project-section">
+                <h3>Project Overview</h3>
+                <p>A web app for real-time monitoring of urban parameters across Indian cities, including air quality, traffic, water levels, and energy usage.</p>
+            </div>
+            <div class="project-section">
+                <h3>Core Features</h3>
+                <ul>
+                    <li><strong>Real-time Monitoring</strong>: Tracks urban parameters live.</li>
+                    <li><strong>User Authentication</strong>: Admin/user roles with secure login.</li>
+                    <li><strong>Interactive Visuals</strong>: Dynamic data charts.</li>
+                    <li><strong>Map Integration</strong>: OpenStreetMap for location mapping.</li>
+                    <li><strong>Search & Alerts</strong>: Location-based filtering and critical condition alerts.</li>
+                    <li><strong>Admin Panel</strong>: User management and alert creation.</li>
+                    <li><strong>Responsive Design</strong>: Works on all devices.</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Tech Stack</h3>
+                <p><strong>Frontend</strong>: React.js, TypeScript, Chakra UI, Redux Toolkit, Socket.io-client, Leaflet Maps, Chart.js</p>
+                <p><strong>Backend</strong>: Node.js, Express.js, MongoDB, JWT, Socket.io, various APIs</p>
+            </div>
+            <div class="project-section">
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Node.js (v14 or higher)</li>
+                    <li>MongoDB (local or MongoDB Atlas)</li>
+                    <li>npm or yarn</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li>Setup MongoDB and update .env with MongoDB URI.</li>
+                    <li><strong>Backend</strong>: cd backend, npm install, npm run setup, npm run dev.</li>
+                    <li><strong>Frontend</strong>: cd frontend, npm install, npm start.</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Default Logins</h3>
+                <ul>
+                    <li><strong>Admin User</strong>: Email: admin@smartcity.com, Password: admin123</li>
+                    <li><strong>Demo User</strong>: Email: user1@smartcity.com, Password: user123</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Environment Variables</h3>
+                <p><strong>Backend (.env)</strong>: PORT=5000, MONGODB_URI=mongodb://localhost:27017/, JWT_SECRET=your_secret_key_here, FRONTEND_URL=http://localhost:3000</p>
+                <p><strong>Frontend (.env)</strong>: REACT_APP_API_URL=http://localhost:5000</p>
+            </div>
+            <div class="project-section">
+                <h3>Features Overview</h3>
+                <ul>
+                    <li><strong>Regular Users</strong>: Dashboard, alerts, map view, settings.</li>
+                    <li><strong>Admin Users</strong>: Admin dashboard, create alerts, manage users, monitor system.</li>
+                </ul>
+            </div>
+            <div class="project-section">
+                <h3>Project Structure</h3>
+                <p>smart-city-dashboard/ with backend/ (middleware, models, routes, scripts, server.ts) and frontend/ (components, contexts, utils, App.tsx).</p>
+            </div>
+            <div class="project-section">
+                <p>This dashboard offers a powerful tool for urban monitoring with real-time insights and management capabilities.</p>
+                <a href="https://github.com/23f1000356/Smart-City-Dashboard" class="github-link" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/vishakha-roy-52924b1b6/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/23f1000356" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:122vishakha2092@sjcem.edu.in">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="tel:+919354565648">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Vishakha Roy. Crafted with 💜 and lots of ☕</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close menu on link click (mobile)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                navbar.querySelectorAll('a').forEach(link => {
+                    if (!link.classList.contains('logo')) {
+                        link.style.color = '#333';
+                    }
+                });
+                navbar.querySelector('.logo').style.color = '#667eea';
+                // Update hamburger color for light background
+                const bars = document.querySelectorAll('.bar');
+                bars.forEach(bar => bar.style.background = '#333');
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.boxShadow = 'none';
+                navbar.querySelectorAll('a').forEach(link => {
+                    link.style.color = 'white';
+                });
+                // Reset hamburger color for transparent background
+                const bars = document.querySelectorAll('.bar');
+                bars.forEach(bar => bar.style.background = 'white');
+            }
+        });
+
+        // Image Slider Functionality
+        let slideIndex = 0;
+        const slides = document.getElementById('imageSlider').getElementsByTagName('img');
+        const totalSlides = slides.length;
+
+        function showSlides() {
+            for (let i = 0; i < totalSlides; i++) {
+                slides[i].style.display = 'none';
+            }
+            if (totalSlides > 0) {
+                slideIndex = (slideIndex + totalSlides) % totalSlides;
+                slides[slideIndex].style.display = 'block';
+            }
+        }
+
+        function slide(direction) {
+            slideIndex += direction;
+            showSlides();
+        }
+
+        // Auto-slide every 3 seconds
+        if (totalSlides > 1) {
+            setInterval(() => slide(1), 3000);
+        }
+
+        // Initial call
+        showSlides();
+    </script>
+</body>
+</html>
                 font-size: 1.1rem;
             }
             ul {
